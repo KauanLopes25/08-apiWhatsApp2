@@ -22,7 +22,13 @@
 ******************************** BIBLIOTECAS UTILIZADAS *************************************
 
 ********************************************************************************************/
+// Mensagem de erro
+const MESSAGE_ERRO = { status: false, status_code: 500, development: "Kauan Lopes Pereira" }
 
+
+const { json } = require('body-parser')
+// Importação dos dados de contatos
+const dados = require('./contatos.js')
 
 // module.exports = {
    
