@@ -25,21 +25,31 @@
 // Mensagem de erro
 const MESSAGE_ERRO = { status: false, status_code: 500, development: "Kauan Lopes Pereira" }
 
-
 const { json } = require('body-parser')
 // Importação dos dados de contatos
 const dados = require('./contatos.js')
 
 // Função para retornar todos os dados dos usuários
-function getAllDataUsers(){
-
+function getAllUsersData(){
+    let message = { status: true, status_code: 200, development: "Kauan Lopes Pereira" }
+    message.usersDatas = []
+    dados.contatos['whats-users'].forEach(function(item){
+        message.usersDatas.push(item)
+    })
+    if (message.usersDatas.length > 0) {
+        return message
+    } else {
+        return MESSAGE_ERRO
+    }
+   
 }
+console.log(getAllUsersData())
 // Função para retornar todos os dados de um usuário
-function getDataUser(phoneNumber){
+function getUserData(phoneNumber){
 
 }
 // Função para retornar dados pessoais dos contatos de um usuário
-function getContactDataUser(phoneNumber){
+function getContactUserData(phoneNumber){
 
 }
 // Função para retornar todas as mensagens trocadas que um usuário já teve
@@ -48,7 +58,7 @@ function getAllUserMenssages(phoneNumber){
 }
 // Função para retornar uma conversa especifica entre o usuario e um contato
 function getUserMenssage(phoneNumber){
-    
+
 }
 
 // module.exports = {
