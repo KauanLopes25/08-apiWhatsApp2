@@ -1,11 +1,11 @@
 'use strict'
 
 /********************************************************************************************
-* Objetivo: Arquivo responsável por rodar a aplcação da api, utilizando EndPoints referente 
-a API de estados e cidades
+* Objetivo: Arquivo responsável por rodar a aplicação da api, utilizando EndPoints referente 
+a API de whatsaap
 * Autor: Kauan Lopes Pereira
 * Data: 15/09/2025
-* Versão: 1.1.09.25
+* Versão: 1.0.09.25
 ********************************************************************************************/
 
 /* Comentário em bloco */
