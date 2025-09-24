@@ -30,6 +30,27 @@ const { json } = require('body-parser')
 // Importação dos dados de contatos
 const dados = require('./contatos.js')
 
+// Função para retornar todos os dados dos usuários
+function getAllDataUsers(){
+
+}
+// Função para retornar todos os dados de um usuário
+function getDataUser(phoneNumber){
+
+}
+// Função para retornar dados pessoais dos contatos de um usuário
+function getContactDataUser(phoneNumber){
+
+}
+// Função para retornar todas as mensagens trocadas que um usuário já teve
+function getAllUserMenssages(phoneNumber){
+
+}
+// Função para retornar uma conversa especifica entre o usuario e um contato
+function getUserMenssage(phoneNumber){
+    
+}
+
 // module.exports = {
    
 // }
