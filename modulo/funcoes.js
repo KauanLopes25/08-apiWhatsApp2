@@ -43,15 +43,49 @@ function getAllUsersData(){
     }
    
 }
-console.log(getAllUsersData())
+// console.log(getAllUsersData())
+
 // Função para retornar todos os dados de um usuário
 function getUserData(phoneNumber){
+    let message = { status: true, status_code: 200, development: "Kauan Lopes Pereira",}
+    let profile = dados.contatos['whats-users'].find(profile => profile.number == phoneNumber)
 
+    if (profile != undefined) {
+        message.account = profile.account
+        message.nickname = profile.nickname
+        message.created_since = profile['created-since']
+        message.profile_image = profile['profile-image']
+        message.number = profile.number
+        message.background = profile.background
+        return message
+    
+    } else {
+        return MESSAGE_ERRO
 }
+    }
+    
+// console.log(getUserData(1194457796))
+
 // Função para retornar dados pessoais dos contatos de um usuário
 function getContactUserData(phoneNumber){
+    let message = { status: true, status_code: 200, development: "Kauan Lopes Pereira",}
+    let profile = dados.contatos['whats-users'].find(profile => profile.number == phoneNumber)
 
+    if (profile != undefined) {
+        let contacts = profile.contacts
+        message.contacts = []
+        contacts.forEach(function(item){
+            message.contacts.push(item.name)
+            message.contacts.push(item.number)
+            message.contacts.push(item.description)
+        })
+        return message
+    } else {
+        return MESSAGE_ERRO
+    }
+   
 }
+console.log(getContactUserData(11987876567))
 // Função para retornar todas as mensagens trocadas que um usuário já teve
 function getAllUserMenssages(phoneNumber){
 
