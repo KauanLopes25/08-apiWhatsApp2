@@ -75,9 +75,9 @@ function getContactUserData(phoneNumber){
         let contacts = profile.contacts
         message.contacts = []
         contacts.forEach(function(item){
-            message.contacts.push(item.name)
-            message.contacts.push(item.number)
-            message.contacts.push(item.description)
+            delete item.image
+            delete item.messages
+            message.contacts.push(item)
         })
         return message
     } else {
