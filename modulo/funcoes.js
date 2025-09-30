@@ -13,8 +13,11 @@
 /********************************************************************************************
 ********************************* COMANDOS UTILIZADOS ***************************************
 * forEach - Método de um array que percorre todos os indices.
-* push - Método de um array para adicionar elementos dentro de um array.
+* push - Método de um array para adicionar no final elementos dentro de um array.
 * find - Método de um array para procurar um elemento especifico pelo conteudo.
+Retorna somente o primeiro elemento que satisfaz a condição.
+* filter- Método de um array para procurar um elemento especifico pelo conteudo.
+Retorna um novo array com todos os elementos que satisfazem a condição.
 ************************************** OBSERVAÇÕES ******************************************
 * Todo array possui um indice, e para acessar um indice devemos dizer qual a sua posição [0],
 [3] ou [n], seria a posição em que aquele elemento se encontra dentro de todo array.
@@ -102,9 +105,6 @@ function getAllUserMenssages(phoneNumber){
         let contacts = profile.contacts
         message.contacts = []
         contacts.forEach(function(item){
-            delete item.number
-            delete item.description
-            delete item.image
             message.contacts.push(item)
         })
         return message
@@ -112,11 +112,25 @@ function getAllUserMenssages(phoneNumber){
         return MESSAGE_ERRO
     }
 }
-console.log(getAllUserMenssages(11987876567))
-// Função para retornar uma conversa especifica entre o usuario e um contato
-function getUserMenssage(phoneNumber){
+// console.log(getAllUserMenssages(11987876567))
 
+// Função para retornar todas as mensagens trocadas entre o usuário e um contato especifico
+function getUserMenssage(phoneNumber, contact){
+    let message = { status: true, status_code: 200, development: "Kauan Lopes Pereira",}
+    let profile = dados.contatos['whats-users'].find(profile => profile.number == phoneNumber)
+
+    if (profile != undefined) {
+        message.account = profile.account
+        message.nickname = profile.nickname
+        message.number = profile.number
+        let contacts = profile.contacts
+        message.contacts = contacts.filter(userContact => userContact.name == contact)
+        return message
+    } else {
+        return MESSAGE_ERRO
+    }
 }
+// console.log(getUserMenssage(11987876567, 'Ana Maria'))
 
 // module.exports = {
    
