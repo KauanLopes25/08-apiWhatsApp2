@@ -115,7 +115,7 @@ function getAllUserMenssages(phoneNumber){
 // console.log(getAllUserMenssages(11987876567))
 
 // Função para retornar todas as mensagens trocadas entre o usuário e um contato especifico
-function getUserMenssage(phoneNumber, contact){
+function getUserMenssageWithContact(phoneNumber, contact){
     let message = { status: true, status_code: 200, development: "Kauan Lopes Pereira",}
     let profile = dados.contatos['whats-users'].find(profile => profile.number == phoneNumber)
 
@@ -124,14 +124,50 @@ function getUserMenssage(phoneNumber, contact){
         message.nickname = profile.nickname
         message.number = profile.number
         let contacts = profile.contacts
-        message.contacts = contacts.filter(userContact => userContact.name == contact)
+        message.contacts = contacts.filter(userContact => userContact.number == contact)
         return message
     } else {
         return MESSAGE_ERRO
     }
 }
-// console.log(getUserMenssage(11987876567, 'Ana Maria'))
+// console.log(getUserMenssageWithContact(11987876567, '26999999963'))
 
+function getUserMenssageWithContactAndKeyWord(phoneNumber, contact, keyWord){
+    let message = { status: true, status_code: 200, development: "Kauan Lopes Pereira",}
+    let profile = dados.contatos['whats-users'].find(profile => profile.number === phoneNumber)
+
+    if (profile != undefined) {
+        message.account = profile.account
+        message.nickname = profile.nickname
+        message.number = profile.number
+        let contacts = profile.contacts
+        let filterContact = contacts.filter(userContact => userContact.number === contact)
+        if (filterContact.length > 0){
+            let contact = filterContact[0]
+            let userMessage = contact.messages.filter(userKeyWord => userKeyWord.content.includes(keyWord))
+            if (userMessage.length >0) {
+                message.contact = {
+                    name: contact.name, 
+                    number: contact.number, 
+                    description: contact.description,
+                    image: contact.image,
+                    messages: userMessage
+                }
+                return message
+            } else {
+                return MESSAGE_ERRO
+            }
+            
+            
+        } else {
+            return MESSAGE_ERRO
+        }
+        
+    } else {
+        return MESSAGE_ERRO
+    }
+}
+console.log(getUserMenssageWithContactAndKeyWord('11987876567', '26999999963', 'Leonid'))
 // module.exports = {
    
 // }
