@@ -168,6 +168,11 @@ function getUserMenssageWithContactAndKeyWord(phoneNumber, contact, keyWord){
     }
 }
 // console.log(getUserMenssageWithContactAndKeyWord('11987876567', '26999999963', 'Leonid'))
-// module.exports = {
-   
-// }
+module.exports = {
+   getAllUsersData,
+   getAllUserMenssages,
+   getUserData,
+   getContactUserData,
+   getUserMenssageWithContact,
+   getUserMenssageWithContactAndKeyWord
+}
