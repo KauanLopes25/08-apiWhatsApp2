@@ -97,3 +97,17 @@ app.get('/v1/whatsapp/messages/:phoneNumber', function(request, response){
     // Retorna o JSON
     response.json(messagesDatasByUser)
 })
+// 5°
+app.get('/v1/whatsapp/messageswithcontact/:phoneNumber', function(request, response){
+    // Função para obter dados de todas as mensagens trocadas de um usuario com um 
+    // contato especifico utiliznado o numero de celular do usuário e do seu contato
+    let phoneNumberUser = request.params.phoneNumber
+    let phoneNumberContact = request.query.contato
+
+    let messagesDatasByUser = dados.getUserMenssageWithContact(phoneNumberUser, phoneNumberContact)
+
+    // Retorna o status code
+    response.status(messagesDatasByUser.status_code)
+    // Retorna o JSON
+    response.json(messagesDatasByUser)
+})
