@@ -100,14 +100,29 @@ app.get('/v1/whatsapp/messages/:phoneNumber', function(request, response){
 // 5°
 app.get('/v1/whatsapp/messageswithcontact/:phoneNumber', function(request, response){
     // Função para obter dados de todas as mensagens trocadas de um usuario com um 
-    // contato especifico utiliznado o numero de celular do usuário e do seu contato
+    // contato especifico utilizando o numero de celular do usuário e do seu contato
     let phoneNumberUser = request.params.phoneNumber
     let phoneNumberContact = request.query.contato
 
-    let messagesDatasByUser = dados.getUserMenssageWithContact(phoneNumberUser, phoneNumberContact)
+    let messagesDatasByUserwithContact = dados.getUserMenssageWithContact(phoneNumberUser, phoneNumberContact)
 
     // Retorna o status code
-    response.status(messagesDatasByUser.status_code)
+    response.status(messagesDatasByUserwithContact.status_code)
     // Retorna o JSON
-    response.json(messagesDatasByUser)
+    response.json(messagesDatasByUserwithContact)
+})
+// 6°
+app.get('/v1/whatsapp/messageswithcontactandkeyword/:phoneNumber', function(request, response){
+    // Função para filtrar com palavra-chave uma mensagem trocada entre um usuario e um 
+    // contato especifico utilizando o numero de celular do usuário e do seu contato
+    let phoneNumberUser = request.params.phoneNumber
+    let phoneNumberContact = request.query.contato
+    let keyWord = request.query.palavra
+
+    let messagesDatasByUserwithContactAndKeyWord = dados.getUserMenssageWithContactAndKeyWord(phoneNumberUser, phoneNumberContact, keyWord)
+
+    // Retorna o status code
+    response.status(messagesDatasByUserwithContactAndKeyWord.status_code)
+    // Retorna o JSON
+    response.json(messagesDatasByUserwithContactAndKeyWord)
 })
