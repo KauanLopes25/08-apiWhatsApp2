@@ -48,3 +48,18 @@ app.use((request, response, next)=>{
     app.use(cors()) // Carrega as configurações no Cors da API
     next() // Próximo, carregar os proximos endpoints
 })
+// ENDPOINTS
+// 1°
+app.get('/v1/whatsapp', function(request, response){
+    // Pesquisa na função de fornecimento de todos os dados dos usuários
+    let usersDatas = dados.getAllUsersData()
+
+    // Retorno o status code
+    response.status(usersDatas.status_code)
+    // Retorna o JSON
+    response.json(usersDatas)
+})
+
+app.listen(PORT, function(){
+    console.log('API aguardando requisições...')
+})
