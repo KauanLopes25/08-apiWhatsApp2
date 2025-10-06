@@ -78,10 +78,22 @@ app.get('/v1/whatsapp/:phoneNumber', function(request, response){
 app.get('/v1/whatsapp/contacts/:phoneNumber', function(request, response){
     // Função para obter dados de contatos um usuario pelo numero de telefone
     let phoneNumber = request.params.phoneNumber
-    let userData = dados.getContactUserData(phoneNumber)
+    let contactsDataByUser = dados.getContactUserData(phoneNumber)
 
     // Retorna o status code
-    response.status(userData.status_code)
+    response.status(contactsDataByUser.status_code)
     // Retorna o JSON
-    response.json(userData)
+    response.json(contactsDataByUser)
+})
+// 4°
+app.get('/v1/whatsapp/messages/:phoneNumber', function(request, response){
+    // Função para obter dados de todas as mensagens trocadas de um usuario 
+    // utiliznado o numero de celular 
+    let phoneNumber = request.params.phoneNumber
+    let messagesDatasByUser = dados.getAllUserMenssages(phoneNumber)
+
+    // Retorna o status code
+    response.status(messagesDatasByUser.status_code)
+    // Retorna o JSON
+    response.json(messagesDatasByUser)
 })
