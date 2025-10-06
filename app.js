@@ -48,6 +48,10 @@ app.use((request, response, next)=>{
     app.use(cors()) // Carrega as configurações no Cors da API
     next() // Próximo, carregar os proximos endpoints
 })
+// Mensagem de operação da API
+app.listen(PORT, function(){
+    console.log('API aguardando requisições...')
+})
 // ENDPOINTS
 // 1°
 app.get('/v1/whatsapp', function(request, response){
@@ -70,7 +74,14 @@ app.get('/v1/whatsapp/:phoneNumber', function(request, response){
     // Retorna o JSON
     response.json(userData)
 })
+// 3°
+app.get('/v1/whatsapp/contacts/:phoneNumber', function(request, response){
+    // Função para obter dados de contatos um usuario pelo numero de telefone
+    let phoneNumber = request.params.phoneNumber
+    let userData = dados.getContactUserData(phoneNumber)
 
-app.listen(PORT, function(){
-    console.log('API aguardando requisições...')
+    // Retorna o status code
+    response.status(userData.status_code)
+    // Retorna o JSON
+    response.json(userData)
 })
