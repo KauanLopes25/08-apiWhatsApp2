@@ -51,13 +51,24 @@ app.use((request, response, next)=>{
 // ENDPOINTS
 // 1°
 app.get('/v1/whatsapp', function(request, response){
-    // Pesquisa na função de fornecimento de todos os dados dos usuários
+    // Função de fornecimento de todos os dados dos usuários
     let usersDatas = dados.getAllUsersData()
 
-    // Retorno o status code
+    // Retorna o status code
     response.status(usersDatas.status_code)
     // Retorna o JSON
     response.json(usersDatas)
+})
+// 2°
+app.get('/v1/whatsapp/:phoneNumber', function(request, response){
+    // Função para obter dados de um usuario pelo numero de telefone
+    let phoneNumber = request.params.phoneNumber
+    let userData = dados.getUserData(phoneNumber)
+
+    // Retorna o status code
+    response.status(userData.status_code)
+    // Retorna o JSON
+    response.json(userData)
 })
 
 app.listen(PORT, function(){
